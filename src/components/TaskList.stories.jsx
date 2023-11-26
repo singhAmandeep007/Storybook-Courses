@@ -15,10 +15,10 @@ export const MockedState = {
     { ...TaskStories.Default.args.task, id: "3", title: "Task 3" },
     { ...TaskStories.Default.args.task, id: "4", title: "Task 4" },
     { ...TaskStories.Default.args.task, id: "5", title: "Task 5" },
-    { ...TaskStories.Default.args.task, id: "6", title: "Task 6" },
+    { ...TaskStories.Default.args.task, id: "6", title: "Task 6" }
   ],
   status: "idle",
-  error: null,
+  error: null
 };
 
 // A super-simple mock of a redux store
@@ -36,10 +36,10 @@ const Mockstore = ({ taskboxState, children }) => (
               if (taskId >= 0) {
                 state.tasks[taskId].state = newTaskState;
               }
-            },
-          },
-        }).reducer,
-      },
+            }
+          }
+        }).reducer
+      }
     })}
   >
     {children}
@@ -55,13 +55,13 @@ export default {
   // NOTE: it is a Storybook configuration field that prevents our mocked state to be treated as a story.
   // READ-MORE: https://storybook.js.org/docs/react/api/csf#non-story-exports
   // basically lets us export mixture of stories and non stories
-  excludeStories: /.*MockedState$/, // 👈 Storybook ignores anything that contains MockedState
+  excludeStories: /.*MockedState$/ // 👈 Storybook ignores anything that contains MockedState
 };
 
 export const Default = {
   decorators: [
-    (story) => <Mockstore taskboxState={MockedState}>{story()}</Mockstore>,
-  ],
+    (story) => <Mockstore taskboxState={MockedState}>{story()}</Mockstore>
+  ]
 };
 
 export const WithPinnedTasks = {
@@ -69,21 +69,21 @@ export const WithPinnedTasks = {
     (story) => {
       const pinnedtasks = [
         ...MockedState.tasks.slice(0, 5),
-        { id: "6", title: "Task 6 (pinned)", state: "TASK_PINNED" },
+        { id: "6", title: "Task 6 (pinned)", state: "TASK_PINNED" }
       ];
 
       return (
         <Mockstore
           taskboxState={{
             ...MockedState,
-            tasks: pinnedtasks,
+            tasks: pinnedtasks
           }}
         >
           {story()}
         </Mockstore>
       );
-    },
-  ],
+    }
+  ]
 };
 
 export const Loading = {
@@ -92,13 +92,13 @@ export const Loading = {
       <Mockstore
         taskboxState={{
           ...MockedState,
-          status: "loading",
+          status: "loading"
         }}
       >
         {story()}
       </Mockstore>
-    ),
-  ],
+    )
+  ]
 };
 
 export const Empty = {
@@ -107,11 +107,11 @@ export const Empty = {
       <Mockstore
         taskboxState={{
           ...MockedState,
-          tasks: [],
+          tasks: []
         }}
       >
         {story()}
       </Mockstore>
-    ),
-  ],
+    )
+  ]
 };

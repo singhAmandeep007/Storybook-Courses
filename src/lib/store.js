@@ -4,7 +4,7 @@
 import {
   configureStore,
   createSlice,
-  createAsyncThunk,
+  createAsyncThunk
 } from "@reduxjs/toolkit";
 
 /*
@@ -14,7 +14,7 @@ import {
 const TaskBoxData = {
   tasks: [],
   status: "idle",
-  error: null,
+  error: null
 };
 
 // NOTE: retrieve the data from a remote API endpoint and prepared it to handle the various states of our app
@@ -31,7 +31,7 @@ export const fetchTasks = createAsyncThunk("todos/fetchTodos", async () => {
   const result = data.map((task) => ({
     id: `${task.id}`,
     title: task.title,
-    state: task.completed ? "TASK_ARCHIVED" : "TASK_INBOX",
+    state: task.completed ? "TASK_ARCHIVED" : "TASK_INBOX"
   }));
   return result;
 });
@@ -52,7 +52,7 @@ const TasksSlice = createSlice({
         // normalized
         state.tasks[taskId].state = newTaskState;
       }
-    },
+    }
   },
   /*
    * Extends the reducer for the async actions
@@ -76,7 +76,7 @@ const TasksSlice = createSlice({
         state.error = "Something went wrong";
         state.tasks = [];
       });
-  },
+  }
 });
 
 // The actions contained in the slice are exported for usage in our components
@@ -89,8 +89,8 @@ export const { updateTaskState } = TasksSlice.actions;
  */
 const store = configureStore({
   reducer: {
-    taskbox: TasksSlice.reducer,
-  },
+    taskbox: TasksSlice.reducer
+  }
 });
 
 export default store;

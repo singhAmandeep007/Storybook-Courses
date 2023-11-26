@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 export default function Task({
   task: { id, title, state },
   onArchiveTask,
-  onPinTask,
+  onPinTask
 }) {
   return (
     <div className={`list-item ${state}`}>
@@ -63,10 +63,10 @@ Task.propTypes = {
     /** Title of the task */
     title: PropTypes.string.isRequired,
     /** Current state of the task */
-    state: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired
   }),
   /** Event to change the task to archived */
   onArchiveTask: PropTypes.func,
   /** Event to change the task to pinned */
-  onPinTask: PropTypes.func,
+  onPinTask: PropTypes.func
 };
